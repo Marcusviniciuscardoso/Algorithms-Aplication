@@ -20,8 +20,6 @@ function gcd(a, h) {
     // Stores the first part of public key:
     let n = p * q;
     
-    // Finding the other part of public key.
-    // e stands for encrypt
     let e = 2;
     let phi = (p - 1) * (q - 1);
     while (e < phi) {
