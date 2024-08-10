@@ -1,27 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import KMP from './KMP/kmp';
+//import KMP from './KMP/kmp';
+import MapPage from '../src/DIJKSTRA/mapPage/mapPage.tsx';
+
+export const REACT_APP_GOOGLE_API_KEY = "AIzaSyByHmQjqwgHUgb0R7UHKWwA4TP-bIABgWU";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <KMP />
-      </header>
-    </div>
-  );
+  return <MapPage/>
 }
 
 export default App;
