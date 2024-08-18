@@ -3,6 +3,7 @@ import {
   GoogleMap,
   LoadScript,
   DirectionsRenderer,
+  Marker
 } from "@react-google-maps/api";
 import { REACT_APP_GOOGLE_API_KEY } from "../../App";
 import "../mapPage/mapPage.css";
@@ -11,8 +12,8 @@ const MapPage = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
 
-  const destination = useMemo(() => ({ lat: -25.580942, lng: -49.404481 }), []);
-  const origin = useMemo(() => ({ lat: -25.584646, lng: -49.407678 }), []);
+  const destination = useMemo(() => ({ lat: -25.585518, lng: -49.406884}), []);
+  const origin = useMemo(() => ({ lat: -25.580250, lng: -49.401800 }), []);
 
   useEffect(() => {
     const directionsService = new google.maps.DirectionsService();
@@ -32,16 +33,25 @@ const MapPage = () => {
         }
       }
     );
-  }, [origin, destination]); // O useEffect será executado sempre que origin ou destination mudarem
+  }, [origin, destination]); 
 
-  const position = {
-    lat: -25.584646,
-    lng: -49.407678,
-  };
-
+  const position =[ 
+    {lat:-25.584140, lng:-49.403422},
+    {lat:-25.580937, lng: -49.402739},
+    {lat:-25.581813, lng: -49.400311},
+    {lat: -25.582552, lng: -49.404863},
+    {lat: -25.580250, lng: -49.401800 }
+  ] 
+  console.log("Olha o position: ", position)
   const onMapLoad = (map: google.maps.Map) => {
     setMap(map);
   };
+
+  /*useEffect(() => {
+    position.forEach((mark, index) => {
+      console.log(`Olha o mark [${index}]: `, mark);
+    });
+  }, [position]);*/
 
   return (
     <div className="map">
@@ -52,12 +62,22 @@ const MapPage = () => {
         <GoogleMap
           onLoad={onMapLoad}
           mapContainerStyle={{ width: "100%", height: "100%" }}
-          center={position}
+          center={position[0]}
           zoom={20}
         >
+        
           {directions && (
             <DirectionsRenderer directions={directions} />
-          )}
+          )}    
+
+          {position.map((mark, index) => (
+           <Marker
+               key={index}
+               position={mark}
+               onLoad={() => console.log(`Marker ${index} loaded at position: `, mark)}
+           />
+            ))}
+
         </GoogleMap>
       </LoadScript>
     </div>
