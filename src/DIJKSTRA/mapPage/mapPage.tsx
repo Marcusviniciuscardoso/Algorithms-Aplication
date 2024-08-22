@@ -34,14 +34,17 @@ const MapPage = () => {
       }
     );
   }, [origin, destination]); 
-
+  
   const position =[ 
-    {lat:-25.584140, lng:-49.403422},
+    {lat: -25.580250, lng: -49.401800 },
     {lat:-25.580937, lng: -49.402739},
     {lat:-25.581813, lng: -49.400311},
     {lat: -25.582552, lng: -49.404863},
-    {lat: -25.580250, lng: -49.401800 }
+    {lat:-25.584140, lng:-49.403422},
   ] 
+
+  const markerLabels = ["start", "A", "B", "C", "D"]
+
   console.log("Olha o position: ", position)
   const onMapLoad = (map: google.maps.Map) => {
     setMap(map);
@@ -63,14 +66,16 @@ const MapPage = () => {
           {directions && (
             <DirectionsRenderer directions={directions} />
           )}    
-
           {position.map((mark, index) => (
            <Marker
                key={index}
                position={mark}
                onLoad={() => console.log(`Marker ${index} loaded at position: `, mark)}
+               label={markerLabels[index]}
            />
             ))}
+
+
 
         </GoogleMap>
       </LoadScript>
