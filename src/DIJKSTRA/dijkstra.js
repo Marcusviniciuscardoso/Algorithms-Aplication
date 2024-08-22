@@ -5,7 +5,7 @@ class Dijkstra{
     }
 
     /*
-      Start: lat: -25.580250, lng: -49.401800
+      Start: {lat: -25.580250, lng: -49.401800}
       A: -25.580937, -49.402739
       B: -25.581813, -49.400311
       C: -25.582552, -49.404863
@@ -24,7 +24,7 @@ class Dijkstra{
     
     setDijkstraValue(optimalPath){
         this.coordenates.origin  = optimalPath[0]
-        this.coordenates.destination = optimalPath[-1]
+        this.coordenates.destination = optimalPath[optimalPath.length - 1]
     }
 
     getDijkstraValue(){
