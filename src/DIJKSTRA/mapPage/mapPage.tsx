@@ -7,11 +7,11 @@ import {
 } from "@react-google-maps/api";
 import { REACT_APP_GOOGLE_API_KEY } from "../../App";
 import "../mapPage/mapPage.css";
+import Dijkstra from "../DIJKSTRA";
 
 const MapPage = () => {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [directions, setDirections] = useState<google.maps.DirectionsResult | null>(null);
-
   const destination = useMemo(() => ({ lat: -25.585518, lng: -49.406884}), []);
   const origin = useMemo(() => ({ lat: -25.580250, lng: -49.401800 }), []);
 
@@ -46,12 +46,6 @@ const MapPage = () => {
   const onMapLoad = (map: google.maps.Map) => {
     setMap(map);
   };
-
-  /*useEffect(() => {
-    position.forEach((mark, index) => {
-      console.log(`Olha o mark [${index}]: `, mark);
-    });
-  }, [position]);*/
 
   return (
     <div className="map">
